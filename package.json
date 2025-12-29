@@ -1,0 +1,35 @@
+{
+  "name": "dream-ssm",
+  "version": "1.0.0",
+  "description": "AWS SSM CLI tool for easy EC2 instance access",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "dream-ssm": "./dist/dream-ssm"
+  },
+  "scripts": {
+    "dev": "bun run src/index.ts",
+    "build": "bun run scripts/build.ts",
+    "build:current": "bun build --compile --minify --sourcemap --outfile=dist/dream-ssm src/index.ts",
+    "release": "bun run scripts/release.ts",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@aws-sdk/client-ec2": "^3.958.0",
+    "@aws-sdk/client-ssm": "^3.958.0",
+    "@aws-sdk/client-sts": "^3.958.0",
+    "@aws-sdk/credential-providers": "^3.958.0",
+    "@aws-sdk/shared-ini-file-loader": "^3.374.0",
+    "@clack/prompts": "^0.11.0",
+    "cli-table3": "^0.6.5",
+    "commander": "^14.0.2",
+    "fuzzysort": "^3.1.0",
+    "picocolors": "^1.1.1"
+  }
+}
