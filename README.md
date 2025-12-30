@@ -136,11 +136,12 @@ dream-ssm --region <region>     # AWS 리전 지정
 
 ## 개발
 
+> 📖 **개발 가이드**: [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md)에서 상세한 개발 가이드를 확인할 수 있습니다.
+
 ```bash
 bun install              # 의존성 설치
 bun run dev              # 개발 모드 실행
-bun run build            # 현재 플랫폼 바이너리 빌드
-bun run build -- --all   # 모든 플랫폼 바이너리 빌드
+bun run build            # 바이너리 빌드
 bunx tsc --noEmit        # 타입 체크
 ```
 
