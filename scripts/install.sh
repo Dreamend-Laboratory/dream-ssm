@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-REPO="your-org/dream-ssm"
+REPO="Dreamend-Laboratory/dream-ssm"
 INSTALL_DIR="/usr/local/bin"
 
 # Detect OS and architecture

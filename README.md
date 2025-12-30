@@ -13,22 +13,22 @@ AWS SSM을 통해 EC2 인스턴스에 쉽게 접속할 수 있는 인터랙티�
 ### 원라인 설치 (권장)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/your-org/dream-ssm/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Dreamend-Laboratory/dream-ssm/main/scripts/install.sh | bash
 ```
 
 ### GitHub Releases에서 직접 다운로드
 
-[Releases 페이지](https://github.com/your-org/dream-ssm/releases)에서 플랫폼에 맞는 바이너리를 다운로드합니다.
+[Releases 페이지](https://github.com/Dreamend-Laboratory/dream-ssm/releases)에서 플랫폼에 맞는 바이너리를 다운로드합니다.
 
 ```bash
 # macOS (Apple Silicon)
-curl -L -o dream-ssm https://github.com/your-org/dream-ssm/releases/latest/download/dream-ssm-darwin-arm64
+curl -L -o dream-ssm https://github.com/Dreamend-Laboratory/dream-ssm/releases/latest/download/dream-ssm-darwin-arm64
 
 # macOS (Intel)
-curl -L -o dream-ssm https://github.com/your-org/dream-ssm/releases/latest/download/dream-ssm-darwin-x64
+curl -L -o dream-ssm https://github.com/Dreamend-Laboratory/dream-ssm/releases/latest/download/dream-ssm-darwin-x64
 
 # Linux (x64)
-curl -L -o dream-ssm https://github.com/your-org/dream-ssm/releases/latest/download/dream-ssm-linux-x64
+curl -L -o dream-ssm https://github.com/Dreamend-Laboratory/dream-ssm/releases/latest/download/dream-ssm-linux-x64
 
 # 실행 권한 부여 및 설치
 chmod +x dream-ssm
@@ -38,7 +38,7 @@ sudo mv dream-ssm /usr/local/bin/
 ### 소스에서 빌드
 
 ```bash
-git clone https://github.com/your-org/dream-ssm.git
+git clone https://github.com/Dreamend-Laboratory/dream-ssm.git
 cd dream-ssm
 bun install
 bun run build
