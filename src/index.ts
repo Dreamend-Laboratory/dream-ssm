@@ -1,4 +1,19 @@
 #!/usr/bin/env bun
+/**
+ * dream-ssm - AWS SSM CLI Tool
+ * 
+ * EC2 인스턴스에 SSM(Session Manager)을 통해 쉽게 접속할 수 있는 CLI 도구
+ * 
+ * 주요 기능:
+ * - list: 모든 리전의 EC2 인스턴스 조회
+ * - connect: SSM 세션으로 인스턴스 접속
+ * - scp: SSM을 통한 파일 전송
+ * - alias: 자주 사용하는 인스턴스 별칭 관리
+ * 
+ * 실행 모드:
+ * - 인터랙티브 모드: 인수 없이 실행 시 메뉴 기반 UI
+ * - 명령어 모드: 특정 명령어 직접 실행
+ */
 
 import { program } from 'commander';
 import * as p from '@clack/prompts';
