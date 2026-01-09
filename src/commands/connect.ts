@@ -5,26 +5,52 @@ import { getAllRegions } from '../aws/regions';
 import { listInstancesAllRegions } from '../aws/ec2';
 import { startSSMSession } from '../aws/ssm';
 import { selectInstance, showSpinner } from '../ui/prompts';
+import { getAlias } from '../config/aliases';
 import type { AuthContext, Instance } from '../types';
 
 export async function connectCommand(
   auth: AuthContext,
-  instanceId?: string
+  instanceIdOrAlias?: string
 ): Promise<void> {
   const { profile, region } = auth;
   
   let targetInstance: Instance | undefined | null;
   
-  if (instanceId) {
-    targetInstance = await findInstanceById(instanceId, region, profile);
-    if (!targetInstance) {
-      p.note(pc.red(`Instance ${instanceId} not found or SSM agent not online.`), 'Error');
-      process.exit(1);
+  if (instanceIdOrAlias) {
+    if (!instanceIdOrAlias.startsWith('i-')) {
+      const alias = await getAlias(instanceIdOrAlias);
+      if (alias) {
+        targetInstance = {
+          instanceId: alias.instanceId,
+          region: alias.region,
+          name: alias.name || '',
+          state: 'running',
+          privateIp: '',
+          instanceType: '',
+          ssmStatus: 'Online'
+        };
+        p.note(
+          `${pc.green(instanceIdOrAlias)} → ${alias.name || alias.instanceId}\n` +
+          `${pc.dim(`Region: ${alias.region}`)}`,
+          'Using Alias'
+        );
+      } else {
+        p.note(pc.red(`Alias "${instanceIdOrAlias}" not found.\n\nUse ${pc.cyan('dream-ssm alias list')} to see available aliases.`), 'Error');
+        process.exit(1);
+      }
+    } else {
+      targetInstance = await findInstanceById(instanceIdOrAlias, region, profile);
+      if (!targetInstance) {
+        p.note(pc.red(`Instance ${instanceIdOrAlias} not found or SSM agent not online.`), 'Error');
+        process.exit(1);
+      }
     }
   } else {
     targetInstance = await selectInstanceInteractive(profile);
     if (!targetInstance) return;
   }
+  
+  if (!targetInstance) return;
   
   await startSession(targetInstance, profile);
 }
